@@ -1,0 +1,48 @@
+#!/bin/python3
+
+import math
+import os
+import random
+import re
+import sys
+
+#
+# Complete the 'timeConversion' function below.
+#
+# The function is expected to return a STRING.
+# The function accepts STRING s as parameter.
+#
+
+def timeConversion(s):
+    # Write your code here
+    j = list(s)
+    k = int(j[0]+j[1])
+    p = ""
+    if j[-2] == 'P' :
+        if k == 12:
+            j[0] = str(1)
+            j[1]= str(2)
+        else:
+            k = k +12
+            j[0] = str(k//10)
+            j[1] = str(k%10)
+     
+    if j[-2] == 'A':
+      if k == 12:
+         j[0] = str(0)
+         j[1]= str(0)
+    
+    for i in range(8):
+       p = p + j[i]
+    return p
+
+if __name__ == '__main__':
+    fptr = open(os.environ['OUTPUT_PATH'], 'w')
+
+    s = input()
+
+    result = timeConversion(s)
+
+    fptr.write(result + '\n')
+
+    fptr.close()
